@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Demo_MVC.Models.Product>
+
+@*@model IPagedList<Demo_MVC.Models.Product>
+@using PagedList.Mvc;
+@using PagedList;
+*@
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @using (Html.BeginForm("Index", "Employee", FormMethod.Post))
+    {
+        <input type="text" name="search" placeholder="Search here" />
+        <input type="submit" name="submit" value="search" />
+    }
+
+</p>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Image)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Description)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                <img src="@Url.Content(item.Image)" class="card-img-top" alt="Post Image" width="200px" height=" 200px">
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+        
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+@*@Html.PagedListPager(Model, i => Url.Action("Index", "Employee", new { i, search = Request.QueryString["search"] }))*@

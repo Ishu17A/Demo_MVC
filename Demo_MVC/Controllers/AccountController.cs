@@ -10,6 +10,8 @@ namespace Demo_MVC.Controllers
 {
     public class AccountController : Controller
     {
+        DemoContext context = new DemoContext();
+
         // GET: Account
         public ActionResult Login()
         {
@@ -20,9 +22,9 @@ namespace Demo_MVC.Controllers
         [HttpPost]
         public ActionResult Login(Demo demo)
         {
-            using (var context = new DemoContext())
+            /*using (var context = new DemoContext())
             {
-                //bool isValid = context.Demos.Any(x => x.Username == demo.Username && x.Password == demo.Password);
+              */  //bool isValid = context.Demos.Any(x => x.Username == demo.Username && x.Password == demo.Password);
                 Demo demo1 = context.Demos.FirstOrDefault(x => x.Username == demo.Username && x.Password == demo.Password);
                 if (demo1 != null)
                 {
@@ -43,7 +45,7 @@ namespace Demo_MVC.Controllers
 
                 ModelState.AddModelError("", "invalid username and password");
                 return View();
-            }
+          /*  }*/
 
         }
 
@@ -55,12 +57,12 @@ namespace Demo_MVC.Controllers
         [HttpPost]
         public ActionResult Signup(Demo demo)
         {
-            using (var context = new DemoContext())
-            {
+           /* using (var context = new DemoContext())
+            {*/
                 demo.Role = "Employee";
                 context.Demos.Add(demo);
                 context.SaveChanges();
-            }
+            /*}*/
             return RedirectToAction("Login");
         }
 

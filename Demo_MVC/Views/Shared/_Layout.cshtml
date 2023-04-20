@@ -20,7 +20,7 @@
                 @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
 
                 
-
+                f
 
             </div>
             <div class="navbar-collapse collapse">
@@ -30,7 +30,10 @@
 
                         <li>@Html.ActionLink("Logout", "Logout", "Account", new { area = "" }, new { @class = "navbar-brand" })</li>
 
-                        <li class="nav-link"><a>@User.Identity.Name</a></li>
+                        @* <li class="nav-link"><a>@User.Identity.Name</a></li>*@
+
+
+                        <li class="nav-link"><a>@HttpContext.Current.User.Identity.Name</a></li>
 
                     }
                 </ul>

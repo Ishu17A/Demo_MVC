@@ -27,21 +27,17 @@ namespace Demo_MVC.Controllers
                             where user.PostedBy == Id1
                             select user).ToList();
 
-
            /* userData
           .Where(x => x.Name.StartsWith(search) || x.Name.StartsWith(search) || search == null)
          .OrderBy(x => x.Name)
          .ToList()
          .ToPagedList(i ?? 1, 3);*/
-
-
             return View (userData);
        
         }
 
         public ActionResult Create()
         {
-
             return View();
         }
 
@@ -58,7 +54,7 @@ namespace Demo_MVC.Controllers
 
             if (extension.ToLower() == ".jpg" || extension.ToLower() == ".jpeg" || extension.ToLower() == ".png")
             {
-                prop.PostedBy = (Guid)Session["Id"] ;
+                prop.PostedBy = (Guid)Session["Id"];
                 _context.Products.Add(prop);
                 _context.SaveChanges();
 
@@ -86,20 +82,20 @@ namespace Demo_MVC.Controllers
         public ActionResult Edit(HttpPostedFileBase file, Product Prop)
         {
             string filename = Path.GetFileName(file.FileName);
-            string _filename = DateTime.Now.ToString("yymmssfff") + filename;
+       /*     string _filename = DateTime.Now.ToString("yymmssfff") + filename;*/
             string extension = Path.GetExtension(file.FileName);
 
             string path = Path.Combine(Server.MapPath("~/Images/"), filename);
             Prop.Image = "~/Images/" + filename;
-
+            
             if (extension.ToLower() == ".jpg" || extension.ToLower() == ".jpeg" || extension.ToLower() == ".png")
             {
+                Prop.PostedBy = (Guid)Session["Id"];
                 _context.Entry(Prop).State = EntityState.Modified;
-
-                
+      
                 _context.SaveChanges();
 
-                file.SaveAs(path); 
+                file.SaveAs(path);
                 return RedirectToAction("Index");
 
             }

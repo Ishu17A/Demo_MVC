@@ -28,7 +28,6 @@ namespace Demo_MVC.Controllers
          .ToList()
          .ToPagedList(i ?? 1, 3);
 
-
             return View(str);
 
         }

@@ -22,9 +22,5 @@ namespace Demo_MVC.Models
 
         public Guid PostedBy { get; set; } 
 
-
-        public Guid Guid { get; set; }
-
-
     }
 }

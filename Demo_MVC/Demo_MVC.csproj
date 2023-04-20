@@ -148,9 +148,14 @@
     <Compile Include="Migrations\202304191231463_second.designer.cs">
       <DependentUpon>202304191231463_second.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202304200549556_third.cs" />
+    <Compile Include="Migrations\202304200549556_third.designer.cs">
+      <DependentUpon>202304200549556_third.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Demo.cs" />
     <Compile Include="Models\DemoContext.cs" />
+    <Compile Include="Models\DemoLogin.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebRoleProvider.cs" />
@@ -180,6 +185,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202304191231463_second.resx">
       <DependentUpon>202304191231463_second.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202304200549556_third.resx">
+      <DependentUpon>202304200549556_third.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

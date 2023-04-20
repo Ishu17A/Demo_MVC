@@ -22,26 +22,26 @@ namespace Demo_MVC.Controllers
         {
             using (var context = new DemoContext())
             {
-                bool isValid = context.Demos.Any(x => x.Username == demo.Username && x.Password == demo.Password);
-                Demo demo1 = context.Demos.FirstOrDefault(x => x.Username == demo.Username);
-                if (isValid)
+                //bool isValid = context.Demos.Any(x => x.Username == demo.Username && x.Password == demo.Password);
+                Demo demo1 = context.Demos.FirstOrDefault(x => x.Username == demo.Username && x.Password == demo.Password);
+                if (demo1 != null)
                 {
                     if (demo1.Role == "Admin")
                     {
-                        Session["Username"] = demo.Username;
-                        FormsAuthentication.SetAuthCookie(demo.Username, false);
+                      /*  Session["Username"] = demo1.Username;*/
+                        FormsAuthentication.SetAuthCookie(demo1.Username, false);
                         return RedirectToAction("Index", "Admin");
                     }
                     else if (demo1.Role == "Employee")
                     {
                         Session["Id"] = demo1.Id;
-                        Session["Username"] = demo1.Username;
-                        FormsAuthentication.SetAuthCookie(demo.Username, false);
+                   /*     Session["Username"] = demo1.Username;*/
+                        FormsAuthentication.SetAuthCookie(demo1.Username, false);
                         return RedirectToAction("Index", "Employee");
                     }
-
                 }
-                ModelState.AddModelError("", "invalid username and passward");
+
+                ModelState.AddModelError("", "invalid username and password");
                 return View();
             }
 
@@ -52,10 +52,7 @@ namespace Demo_MVC.Controllers
             return View();
         }
 
-
-
         [HttpPost]
-
         public ActionResult Signup(Demo demo)
         {
             using (var context = new DemoContext())
